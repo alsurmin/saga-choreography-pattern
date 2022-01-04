@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    function:
+      definition: orderSupplier;paymentEventConsumer
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:29092
+          configuration:
+            security:
+              protocol: PLAINTEXT
+      bindings:
+        orderSupplier-out-0:
+          destination: order-event
+        paymentEventConsumer-in-0 :
+          destination: payment-event
+
+server:
+  port: 8081

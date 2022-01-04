@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    function:
+      definition: paymentProcessor
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:29092
+          configuration:
+            security:
+              protocol: PLAINTEXT
+      bindings:
+        paymentProcessor-in-0 :
+          destination: order-event
+        paymentProcessor-out-0:
+          destination: payment-event
+
+server:
+  port: 8082
